@@ -57,6 +57,8 @@ public class Articles {
         this.articleBody = articleBody;
     }
 
+    public Articles(){}
+
     public Articles(Long id, String title, String author, String thumbnail, String articleBody) {
         this.id = id;
         this.title = title;
