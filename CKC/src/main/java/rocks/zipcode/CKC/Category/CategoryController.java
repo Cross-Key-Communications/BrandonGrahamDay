@@ -5,24 +5,20 @@ package rocks.zipcode.CKC.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-//import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
 
-
-    private CategoryService service;
-        private CategoryRepository categoryRepository;
-
+        private CategoryService service;
+//        private CategoryRepository categoryRepository;
 
         @Autowired
         public CategoryController(CategoryService service, CategoryRepository categoryRepository) {
             this.service = service;
-            this.categoryRepository = categoryRepository;
+//            this.categoryRepository = categoryRepository;
         }
 
 
