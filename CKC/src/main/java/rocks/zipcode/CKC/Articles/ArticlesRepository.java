@@ -1,4 +1,6 @@
 package rocks.zipcode.CKC.Articles;
 
-public interface ArticlesRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface ArticlesRepository extends CrudRepository<Articles, Long> {
 }
