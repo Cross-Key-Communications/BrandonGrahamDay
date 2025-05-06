@@ -67,5 +67,8 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:3.4.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:3.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:3.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:3.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:6.2.5" level="project" />
   </component>
 </module>

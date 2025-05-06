@@ -1,0 +1,7 @@
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem; /* adjust if needed */
+  background-color: #f4f4f4; /* keep your style */
+}
