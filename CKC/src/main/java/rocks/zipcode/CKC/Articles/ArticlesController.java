@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticlesController {
 
     private final ArticlesRepository articlesRepository;
+    private final ArticlesService articlesService;
 
     @Autowired
-    public ArticlesController(ArticlesRepository articlesRepository){ this.articlesRepository = articlesRepository; }
+    public ArticlesController(ArticlesRepository articlesRepository, ArticlesService articlesService){ this.articlesRepository = articlesRepository;
+    this.articlesService = articlesService; }
 
     @GetMapping
     public Iterable<Articles> getAllArticles(){ return articlesRepository.findAll(); }
 
+    @GetMapping("/fetch")
+    public void fetchArticle(){ articlesService.fetchNews(); }
 
 }
