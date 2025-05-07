@@ -20,14 +20,14 @@ public class UserController {
     }
 
 
-    @GetMapping
-    // this is what was returning the json to the webpage
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+//    @GetMapping
+//    // this is what was returning the json to the webpage
+//    public Iterable<User> getAllUsers() {
+//        return userRepository.findAll();
+//    }
 
 
-    @GetMapping("/signup")
+    @GetMapping//("/signup")
     // serves the signup page (used if using Thymeleaf or similar view engine)
     public String showSignUpPage() {
         return "signup";
