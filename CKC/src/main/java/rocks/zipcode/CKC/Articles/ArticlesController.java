@@ -1,10 +1,10 @@
 package rocks.zipcode.CKC.Articles;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rocks.zipcode.CKC.User.User;
+import java.util.List;
 
 @RestController
 @RequestMapping("/articles")
@@ -20,8 +20,9 @@ public class ArticlesController {
     @GetMapping
     public Iterable<Articles> getAllArticles(){ return articlesRepository.findAll(); }
 
+    @CrossOrigin(origins = "http://localhost:3000") // Allow frontend access
     @GetMapping("/fetch")
-    public ResponseEntity<String> fetchArticle() {
-        return articlesService.fetchNews();
+    public List<ArticlesDTO> fetchArticles() {
+        return (List<ArticlesDTO>) articlesService.fetchNews();
     }
 }
