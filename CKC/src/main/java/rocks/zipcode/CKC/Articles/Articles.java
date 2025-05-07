@@ -19,7 +19,7 @@ public class Articles {
     String articleDescription;
     @Column(name="Articles_ArticlesBody")
     String articleBody;
-    @Column(name="Articles_ArticlesSource")
+    @Embedded
     ArticlesSource source;
 
     public Long getId() {
