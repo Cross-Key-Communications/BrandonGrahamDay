@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ArticlesService {
 
-    public void fetchNews() {
+    public ResponseEntity<String> fetchNews() {
         // Step 1: Create a helper to make the HTTP call
         RestTemplate restTemplate = new RestTemplate();
         // Step 2: This is the robot you're talking to (the API URL)
@@ -16,6 +16,6 @@ public class ArticlesService {
         // Step 3: Ask the robot for data (GET request)
         ResponseEntity<String> response = restTemplate.getForEntity(apiUrl, String.class);
         // Step 4: Print out what the robot said (the JSON text)
-        System.out.println(response.getBody());
+        return response;
     }
 }

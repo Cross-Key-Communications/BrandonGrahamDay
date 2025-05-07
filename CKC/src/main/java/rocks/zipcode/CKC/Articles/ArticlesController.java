@@ -21,7 +21,7 @@ public class ArticlesController {
     public Iterable<Articles> getAllArticles(){ return articlesRepository.findAll(); }
 
     @GetMapping("/fetch")
-    public String fetchArticle(){ articlesService.fetchNews();
-        return "News fetched and printed to console"; }
-
+    public ResponseEntity<String> fetchArticle() {
+        return articlesService.fetchNews();
+    }
 }
