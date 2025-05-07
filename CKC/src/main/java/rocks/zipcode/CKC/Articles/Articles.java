@@ -15,8 +15,12 @@ public class Articles {
     String author;
     @Column(name="Articles_Thumbnail")
     String thumbnail;
+    @Column(name="Articles_ArticlesDescription")
+    String articleDescription;
     @Column(name="Articles_ArticlesBody")
     String articleBody;
+    @Column(name="Articles_ArticlesSource")
+    ArticlesSource source;
 
     public Long getId() {
         return id;
