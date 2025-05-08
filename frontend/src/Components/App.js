@@ -1,13 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import NewsCard from './NewsCard'; // path is correct since it's in the same folder
 import NewsGrid from './NewsGrid';
-import Header from './Header';
-import "slick-carousel/slick/slick.css";
-
-import ImageSlider from './ImageSlider';
-import Footer from './Footer';
-import Comment from './Comment';
 
 function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -29,11 +22,6 @@ function App() {
       ) : (
         <NewsGrid onArticleClick={setSelectedArticle} />
       )}
-<Header />
-<ImageSlider />
-<Comment />
-      <NewsGrid/>
-      <Footer />
     </div>
   );
 }
