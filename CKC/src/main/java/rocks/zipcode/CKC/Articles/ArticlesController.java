@@ -18,9 +18,9 @@ public class ArticlesController {
     @GetMapping
     public Iterable<Articles> getAllArticles(){ return articlesRepository.findAll(); }
 
-    @CrossOrigin(origins = "http://localhost:3000") // Allow frontend access
+    @CrossOrigin(origins = "http://localhost:3000") // Allows frontend access
     @GetMapping("/fetch")
     public List<ArticlesDTO> fetchArticles() {
-        return (List<ArticlesDTO>) articlesService.fetchNews();
+        return articlesService.fetchNews();
     }
 }

@@ -70,4 +70,7 @@ public class Articles {
         this.thumbnail = thumbnail;
         this.articleBody = articleBody;
     }
+
+    public void setArticleDescription(String description) {
+    }
 }
