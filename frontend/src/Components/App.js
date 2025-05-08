@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 
 import ImageSlider from './ImageSlider';
 import Footer from './Footer';
-
+import Comment from './Comment';
 
 function App() {
   // dummy data to simulate one article
@@ -22,6 +22,7 @@ function App() {
     <div className="App">
 <Header />
 <ImageSlider />
+<Comment />
       <NewsGrid/>
       <Footer />
     </div>
