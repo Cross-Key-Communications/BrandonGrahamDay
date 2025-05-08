@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import rocks.zipcode.CKC.User.User;
 
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -14,7 +14,7 @@ public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
-    private Long id;
+    private Long postId;
 
 
     // Optional: enable this when Article entity is ready
@@ -29,7 +29,7 @@ public class Comments {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_posted")
-    private Date datePosted;
+    private LocalDateTime datePosted;
 
 
     @ManyToOne
@@ -41,18 +41,18 @@ public class Comments {
     public Comments() {}
 
 
-    public Comments(Long id, User user, String text, Date datePosted) {
-        this.id = id;
+    public Comments(Long postId, User user, String text, LocalDateTime datePosted) {
+        this.postId = postId;
         this.user = user;
         this.text = text;
         this.datePosted = datePosted;
     }
 
 
-    public Long getId() { return id; }
+    public Long getPostId() { return postId; }
 
 
-    public void setId(Long id) { this.id = id; }
+    public void setPostId(Long postId) { this.postId = postId; }
 
 
     public User getUser() { return user; }
@@ -67,8 +67,8 @@ public class Comments {
     public void setText(String text) { this.text = text; }
 
 
-    public Date getDatePosted() { return datePosted; }
+    public LocalDateTime getDatePosted() { return datePosted; }
 
 
-    public void setDatePosted(Date datePosted) { this.datePosted = datePosted; }
+    public void setDatePosted(LocalDateTime datePosted) { this.datePosted = datePosted; }
 }
