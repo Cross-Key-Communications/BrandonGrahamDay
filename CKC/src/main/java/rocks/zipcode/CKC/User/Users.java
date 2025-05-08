@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "User_Id")
@@ -32,13 +32,13 @@ public class User {
     private List<Comments> comments;
 
 
-    public User() {
+    public Users() {
 
 
     }
 
 
-    public User(Long id, String firstName, String lastName,String email, String userName, String password) {
+    public Users(Long id, String firstName, String lastName, String email, String userName, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

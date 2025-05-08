@@ -37,9 +37,9 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     // endpoint to create a user with a JSON body
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userRepository.save(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    public ResponseEntity<Users> createUser(@RequestBody Users users) {
+        Users savedUsers = userRepository.save(users);
+        return new ResponseEntity<>(savedUsers, HttpStatus.CREATED);
     }
 
 
@@ -54,16 +54,16 @@ public class UserController {
 
 
         // Construct user entity
-        User newUser = new User();
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setUserName(userName);
-        newUser.setEmail(email);
-        newUser.setPassword(password);
+        Users newUsers = new Users();
+        newUsers.setFirstName(firstName);
+        newUsers.setLastName(lastName);
+        newUsers.setUserName(userName);
+        newUsers.setEmail(email);
+        newUsers.setPassword(password);
 
 
         // Persist user
-        userRepository.save(newUser);
+        userRepository.save(newUsers);
 
 
         // Redirect to homepage
@@ -81,14 +81,14 @@ public class UserController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+    public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users updatedUsers) {
         return userRepository.findById(id)
                 .map(existingUser -> {
-                    existingUser.setFirstName(updatedUser.getFirstName());
-                    existingUser.setLastName(updatedUser.getLastName());
-                    existingUser.setUserName(updatedUser.getUserName());
-                    existingUser.setEmail(updatedUser.getEmail());
-                    existingUser.setPassword(updatedUser.getPassword());
+                    existingUser.setFirstName(updatedUsers.getFirstName());
+                    existingUser.setLastName(updatedUsers.getLastName());
+                    existingUser.setUserName(updatedUsers.getUserName());
+                    existingUser.setEmail(updatedUsers.getEmail());
+                    existingUser.setPassword(updatedUsers.getPassword());
                     userRepository.save(existingUser);
                     return ResponseEntity.ok(existingUser);
                 })
