@@ -2,7 +2,7 @@ package rocks.zipcode.CKC.Comments;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import rocks.zipcode.CKC.User.User;
+import rocks.zipcode.CKC.User.Users;
 
 
 import java.util.Date;
@@ -35,15 +35,15 @@ public class Comments {
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonBackReference
-    private User user;
+    private Users users;
 
 
     public Comments() {}
 
 
-    public Comments(Long id, User user, String text, Date datePosted) {
+    public Comments(Long id, Users users, String text, Date datePosted) {
         this.id = id;
-        this.user = user;
+        this.users = users;
         this.text = text;
         this.datePosted = datePosted;
     }
@@ -55,10 +55,10 @@ public class Comments {
     public void setId(Long id) { this.id = id; }
 
 
-    public User getUser() { return user; }
+    public Users getUser() { return users; }
 
 
-    public void setUser(User user) { this.user = user; }
+    public void setUser(Users users) { this.users = users; }
 
 
     public String getText() { return text; }
