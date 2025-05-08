@@ -6,11 +6,15 @@ import org.springframework.web.bind.annotation.*;
 import rocks.zipcode.CKC.User.Users;
 import rocks.zipcode.CKC.User.UserRepository;
 
+import javax.xml.stream.events.Comment;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/comments")
 public class CommentsController {
 
 
@@ -48,6 +52,16 @@ public class CommentsController {
         // return "redirect:/articles/" + articleId;
     }
 
+//    @GetMapping("/post/{postId}")
+//    public List<Comments> getCommentsByPost(@PathVariable Long postId) {
+//        return commentsRepository.findByPostId(postId);
+//    }
+
+//    @PostMapping
+//    public Comments createComments(@RequestBody Comments comments) {
+//        comments.setDatePosted(LocalDateTime.now());
+//        return commentsRepository.save(comments);
+//    }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<Iterable<Comments>> getCommentsByUser(@PathVariable Long userId) {
