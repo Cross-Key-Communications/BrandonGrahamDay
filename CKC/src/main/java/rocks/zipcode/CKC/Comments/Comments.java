@@ -2,7 +2,7 @@ package rocks.zipcode.CKC.Comments;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import rocks.zipcode.CKC.User.User;
+import rocks.zipcode.CKC.User.Users;
 
 
 import java.time.LocalDateTime;
@@ -14,7 +14,7 @@ public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
-    private Long postId;
+    private Long id;
 
 
     // Optional: enable this when Article entity is ready
@@ -33,32 +33,31 @@ public class Comments {
 
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonBackReference
-    private User user;
+    @JoinColumn(name = "user_id")  // this name should match the column in your DB
+    private Users user;
 
 
     public Comments() {}
 
 
-    public Comments(Long postId, User user, String text, LocalDateTime datePosted) {
-        this.postId = postId;
+    public Comments(Long id, Users users, String text, LocalDateTime datePosted) {
+        this.id = id;
         this.user = user;
         this.text = text;
         this.datePosted = datePosted;
     }
 
 
-    public Long getPostId() { return postId; }
+    public Long getId() { return id; }
 
 
-    public void setPostId(Long postId) { this.postId = postId; }
+    public void setId(Long id) { this.id = id; }
 
 
-    public User getUser() { return user; }
+    public Users getUser() { return user; }
 
 
-    public void setUser(User user) { this.user = user; }
+    public void setUser(Users users) { this.user = user; }
 
 
     public String getText() { return text; }

@@ -1,5 +1,8 @@
 package rocks.zipcode.CKC.Articles;
 
+import jakarta.persistence.*;
+
+@Embeddable
 public class ArticlesSource {
 
     private String id;

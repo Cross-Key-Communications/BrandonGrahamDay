@@ -15,11 +15,11 @@ public class Articles {
     String author;
     @Column(name="Articles_Thumbnail")
     String thumbnail;
-    @Column(name="Articles_ArticlesDescription")
+    @Column(name="Articles_Description")
     String articleDescription;
-    @Column(name="Articles_ArticlesBody")
+    @Column(name="Articles_Body")
     String articleBody;
-    @Column(name="Articles_ArticlesSource")
+    @Embedded
     ArticlesSource source;
 
     public Long getId() {
