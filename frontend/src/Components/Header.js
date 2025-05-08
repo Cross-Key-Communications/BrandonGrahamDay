@@ -15,7 +15,7 @@ const Header = () => {
          <a href="#tech." style={{ color: 'white' }}>Tech.</a>
       </nav>
       <nav style={{ flex:1, textAlign: 'right' }}>
-      <input type="text" placeHolder="Search..." style={{ padding: '6px 10px', borderRadius: '4px', border: '1px solid #ccc'}} /> </nav>
+      <input type="text" placeholder="Search..." style={{ padding: '6px 10px', borderRadius: '4px', border: '1px solid #ccc'}} /> </nav>
     </header>
   );
 };
