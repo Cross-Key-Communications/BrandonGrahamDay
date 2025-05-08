@@ -4,7 +4,7 @@ import NewsCard from './NewsCard'; // path is correct since it's in the same fol
 import NewsGrid from './NewsGrid';
 import Header from './Header';
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import ImageSlider from './ImageSlider';
 import Footer from './Footer';
 

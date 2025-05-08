@@ -22,7 +22,7 @@ const ImageSlider = () => {
  ];
 
 return (
-<div style={{ width: '100%' , maxWidth: '1000px' margin: '20px auto' }}>
+<div style={{ width: '100%', maxWidth: '1000px', margin: '20px auto' }}>
 <Slider {...settings}>
 {images.map((src, index) => (
 <div key={index}>
