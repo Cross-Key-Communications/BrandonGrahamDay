@@ -33,9 +33,8 @@ public class Comments {
 
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonBackReference
-    private Users users;
+    @JoinColumn(name = "user_id")  // this name should match the column in your DB
+    private Users user;
 
 
     public Comments() {}
@@ -43,7 +42,7 @@ public class Comments {
 
     public Comments(Long id, Users users, String text, Date datePosted) {
         this.id = id;
-        this.users = users;
+        this.user = user;
         this.text = text;
         this.datePosted = datePosted;
     }
@@ -55,10 +54,10 @@ public class Comments {
     public void setId(Long id) { this.id = id; }
 
 
-    public Users getUser() { return users; }
+    public Users getUser() { return user; }
 
 
-    public void setUser(Users users) { this.users = users; }
+    public void setUser(Users users) { this.user = user; }
 
 
     public String getText() { return text; }
