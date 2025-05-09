@@ -15,7 +15,7 @@ function NewsArticle() {
     <div className="news-article">
       <button onClick={() => navigate('/')}>← Back to Headlines</button>
       {article.urlToImage && (
-        <img src={article.urlToImage} alt={article.title} className="news-article-img" />
+        <img src={article.thumbnail || "https://via.placeholder.com/300"} alt={article.title} />
       )}
       <h1>{article.title}</h1>
       <p className="news-article-author">
