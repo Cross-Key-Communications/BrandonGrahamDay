@@ -6,6 +6,7 @@ import rocks.zipcode.CKC.User.User;
 
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Entity
@@ -29,7 +30,7 @@ public class Comments {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_posted")
-    private LocalDateTime datePosted;
+    private Date datePosted;
 
 
     @ManyToOne
@@ -41,18 +42,15 @@ public class Comments {
     public Comments() {}
 
 
-    public Comments(Long postId, User user, String text, LocalDateTime datePosted) {
-        this.postId = postId;
+    public Comments( User user, String text, Date datePosted) {
+
         this.user = user;
         this.text = text;
         this.datePosted = datePosted;
     }
 
 
-    public Long getPostId() { return postId; }
 
-
-    public void setPostId(Long postId) { this.postId = postId; }
 
 
     public User getUser() { return user; }
@@ -67,8 +65,8 @@ public class Comments {
     public void setText(String text) { this.text = text; }
 
 
-    public LocalDateTime getDatePosted() { return datePosted; }
+    public Date getDatePosted() { return datePosted; }
 
 
-    public void setDatePosted(LocalDateTime datePosted) { this.datePosted = datePosted; }
+    public void setDatePosted(Date datePosted) { this.datePosted = datePosted; }
 }
