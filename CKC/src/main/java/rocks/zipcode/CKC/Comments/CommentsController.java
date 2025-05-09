@@ -3,7 +3,7 @@ package rocks.zipcode.CKC.Comments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rocks.zipcode.CKC.User.User;
+import rocks.zipcode.CKC.User.Users;
 import rocks.zipcode.CKC.User.UserRepository;
 
 import javax.xml.stream.events.Comment;
@@ -30,10 +30,10 @@ public class CommentsController {
 
 
     @PostMapping("/submit")
-        public String submitComment(@RequestParam Long userId, /*@RequestParam Long articleId,*/ @RequestParam String text) {
-          // the use of optional allows for null value to exist
-          User user = userRepository.findById(userId)
-                  .orElseThrow(() -> new RuntimeException("You must have an account to comment."));
+    public String submitComment(@RequestParam Long userId, /*@RequestParam Long articleId,*/ @RequestParam String text) {
+        // the use of optional allows for null value to exist
+        Users users = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("You must have an account to comment."));
         // think about redirecting to sign in page after it's made
 
 
@@ -41,33 +41,33 @@ public class CommentsController {
 
 
         Comments newComment = new Comments();
-              newComment.setUser(user);
-        //        // newComment.setArticle(article);
-              newComment.setText(text);
-               newComment.setDatePosted(new Date());
-        //
-        //
-               commentsRepository.save(newComment);
-               return "Comment Submitted";
-        //        // return "redirect:/articles/" + articleId;
-           }
+        newComment.setUser(users);
+        // newComment.setArticle(article);
+        newComment.setText(text);
+        newComment.setDatePosted(new Date());
 
-   // @GetMapping("/post/{postId}")
-    //    public List<Comments> getCommentsByPost(@PathVariable Long postId) {
-    //        return commentsRepository.findByPostId(postId);
-    //    }
-    //
-    //    @PostMapping
-    //    public Comments createComments(@RequestBody Comments comments) {
-    //        comments.setDatePosted(Date.now());
-    //        return commentsRepository.save(comments);
-    //    }
+
+        commentsRepository.save(newComment);
+        return "Comment Submitted";
+        // return "redirect:/articles/" + articleId;
+    }
+
+//    @GetMapping("/post/{postId}")
+//    public List<Comments> getCommentsByPost(@PathVariable Long postId) {
+//        return commentsRepository.findByPostId(postId);
+//    }
+
+//    @PostMapping
+//    public Comments createComments(@RequestBody Comments comments) {
+//        comments.setDatePosted(LocalDateTime.now());
+//        return commentsRepository.save(comments);
+//    }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<Iterable<Comments>> getCommentsByUser(@PathVariable Long userId) {
-        User user = userRepository.findById(userId)
+        Users users = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found."));
-        return ResponseEntity.ok(user.getComments());
+        return ResponseEntity.ok(users.getComments());
     }
     // DELETE comment by ID
     @DeleteMapping("/{id}")
@@ -83,16 +83,16 @@ public class CommentsController {
 
     // PUT (update) comment by ID
     @PutMapping("/{id}")
-       public ResponseEntity<Comments> updateComment(@PathVariable Long id, @RequestBody Comments updatedComment) {
-          return commentsRepository.findById(id)
-                  .map(existingComment -> {
-                       existingComment.setText(updatedComment.getText());
-                     existingComment.setDatePosted(new Date()); // update timestamp
-                     commentsRepository.save(existingComment);
-                      return ResponseEntity.ok(existingComment);
-                  })
-                  .orElse(ResponseEntity.notFound().build());
-       }
+    public ResponseEntity<Comments> updateComment(@PathVariable Long id, @RequestBody Comments updatedComment) {
+        return commentsRepository.findById(id)
+                .map(existingComment -> {
+                    existingComment.setText(updatedComment.getText());
+                    existingComment.setDatePosted(new Date()); // update timestamp
+                    commentsRepository.save(existingComment);
+                    return ResponseEntity.ok(existingComment);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 
 //    @GetMapping("/articles/{id}")
