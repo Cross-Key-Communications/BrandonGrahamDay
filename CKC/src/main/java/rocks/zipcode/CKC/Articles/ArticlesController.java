@@ -20,7 +20,7 @@ public class ArticlesController {
 
     @CrossOrigin(origins = "http://localhost:3000") // Allows frontend access
     @GetMapping("/fetch")
-    public List<ArticlesDTO> fetchArticles() {
+    public List<Articles> fetchArticles() {
         return articlesService.fetchNews();
     }
 }

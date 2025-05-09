@@ -73,4 +73,7 @@ public class Articles {
 
     public void setArticleDescription(String description) {
     }
+
+    public void setSource(ArticlesSource source) {
+    }
 }
