@@ -1,0 +1,19 @@
+.footer {
+backgroundColor: #0c0200;
+padding: 10px 20px;
+color: black;
+display: flex;
+alignItems: center;
+justifyContent: space-between;
+flexWrap: wrap;
+marginTop: 40px }
+
+<div style {
+display: flex;
+alignItems: center;
+backgroundColor: #0c0200}
+
+.footer-left img {
+  height: 50px;
+  margin-right: 15px;
+}

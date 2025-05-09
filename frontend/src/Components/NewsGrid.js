@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NewsCard from './NewsCard';
 import './NewsGrid.css';
 
+
 function NewsGrid({ onArticleClick }) {
   const [articles, setArticles] = useState([]);
 

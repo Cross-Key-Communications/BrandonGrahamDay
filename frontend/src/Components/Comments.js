@@ -1,61 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import './Comments.css';
 
-const CommentSection = ({ postId }) => {
+const Comments = () => {
   const [comments, setComments] = useState([]);
-  const [commentText, setCommentText] = useState('');
+  const [input, setInput] = useState('');
 
-  // Load comments when component mounts
-  useEffect(() => {
-    fetch(`/api/comments/post/${postId}`)
-      .then(res => res.json())
-      .then(data => setComments(data))
-      .catch(err => console.error('Error fetching comments:', err));
-  }, [postId]);
+  // Fetch comments from backend on component mount
+    useEffect(() => {
+      fetch('http://localhost:8081/fetch/comments')
+        .then(res => res.json())
+        .then(data => setComments(data))
+        .catch(err => console.error("Error fetching comments:", err));
+    }, []);
 
-  // Submit a new comment
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch('/api/comments', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        content: commentText,
-        author: 'Anonymous', // or a logged-in user
-        postId: postId
-      })
-    })
-      .then(res => res.json())
-      .then(newComment => {
-        setComments([...comments, newComment]); // Update comment list
-        setCommentText(''); // Clear input
-      })
-      .catch(err => console.error('Error posting comment:', err));
+  const handleAddComment = () => {
+      if (input.trim()) {
+        setComments([...comments, input]); // Frontend-only update (for now)
+        setInput('');
+      }
   };
 
   return (
-    <div>
-      <h3>Comments</h3>
-
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
+      <div className="comments">
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Write a comment..."
-          rows={3}
-          style={{ width: '100%' }}
-        ></textarea>
-        <button type="submit">Post Comment</button>
-      </form>
+          className="comments-input"
+        />
+        <button onClick={handleAddComment} className="comment-button">
+          Post
+        </button>
+        <ul className="comments-list">
+          {comments.map((c, i) => (
+            <li key={i} className="comments-item">
+              {typeof c === 'string' ? c : c.text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
 
-      <ul>
-        {comments.map((comment) => (
-          <li key={comment.id}>
-            <strong>{comment.author}:</strong> {comment.content}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default CommentSection;
+  export default Comments;

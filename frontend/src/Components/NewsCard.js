@@ -1,6 +1,7 @@
 import React from 'react';
 import './NewsCard.css';
 
+
 function NewsCard({ article, onClick }) {
   return (
     <div className="news-card-link" onClick={() => onClick(article)}>

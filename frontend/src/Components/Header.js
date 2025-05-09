@@ -1,9 +1,10 @@
 import React from 'react'
+import './Header.css';
 
 const Header = () => {
   return (
-    <header style={{ backgroundColor: '#0c0200', padding: '10px 20px', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-    <div style = {{display: 'flex', alignItems: 'center'}}>
+    <header className="header">
+    <div className="header-left">
       <img src="/a.png" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
       <h1 style={{ margin: 0 }}>Cross Key Communication</h1>
       </div>
