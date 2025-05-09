@@ -94,6 +94,11 @@ public class CommentsController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/fetch/comments")
+public List<Comments> fetchComments() {
+        return commentsRepository.findAll();
+    }
 
 //    @GetMapping("/articles/{id}")
 //    public String showArticle(@PathVariable Long id, Model model) {

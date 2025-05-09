@@ -21,8 +21,9 @@ public class ArticlesService {
         this.articlesRepository = articlesRepository;
     }
 
-    public List<ArticlesDTO> fetchNews() {
-        List<ArticlesDTO> dtoList = new ArrayList<>();
+    public List<Articles> fetchNews() {
+        List<Articles> savedArticles = new ArrayList<>();
+
         try {
             String url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=e31ee66a0d864e2e9a447942e8af0b2c";
             RestTemplate restTemplate = new RestTemplate();
@@ -33,28 +34,75 @@ public class ArticlesService {
             JsonNode articlesNode = root.path("articles");
 
             for (JsonNode node : articlesNode) {
-                ArticlesDTO dto = new ArticlesDTO();
-                dto.setTitle(node.path("title").asText(null));
-                dto.setAuthor(node.path("author").asText(null));
-                dto.setDescription(node.path("description").asText(null));
-                dto.setContent(node.path("content").asText(null));
-                dto.setUrlToImage(node.path("urlToImage").asText(null));
-                dto.setPublishedAt(node.path("publishedAt").asText(null));
+                Articles article = new Articles();
+                article.setTitle(node.path("title").asText(null));
+                article.setAuthor(node.path("author").asText(null));
+                article.setThumbnail(node.path("urlToImage").asText(null));
+                article.setArticleDescription(node.path("description").asText(null));
+                article.setArticleBody(node.path("content").asText(null));
 
+                // Handle embedded source
+                ArticlesSource source = new ArticlesSource();
                 JsonNode sourceNode = node.path("source");
-                if (!sourceNode.isMissingNode()) {
-                    dto.setId(sourceNode.path("id").asText(null));
-                    dto.setName(sourceNode.path("name").asText(null));
-                }
+                source.setId(sourceNode.path("id").asText(null));
+                source.setName(sourceNode.path("name").asText(null));
+                article.setSource(source);
 
-                dtoList.add(dto);
+                // Save to DB
+                Articles saved = articlesRepository.save(article);
+                savedArticles.add(saved);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return dtoList;
+
+        return savedArticles;
     }
 }
+
+
+
+
+
+
+
+
+
+//    public List<ArticlesDTO> fetchNews() {
+//        List<ArticlesDTO> dtoList = new ArrayList<>();
+//        try {
+//            String url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=e31ee66a0d864e2e9a447942e8af0b2c";
+//            RestTemplate restTemplate = new RestTemplate();
+//            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+//
+//            ObjectMapper mapper = new ObjectMapper();
+//            JsonNode root = mapper.readTree(response.getBody());
+//            JsonNode articlesNode = root.path("articles");
+//
+//            for (JsonNode node : articlesNode) {
+//                ArticlesDTO dto = new ArticlesDTO();
+//                dto.setTitle(node.path("title").asText(null));
+//                dto.setAuthor(node.path("author").asText(null));
+//                dto.setDescription(node.path("description").asText(null));
+//                dto.setContent(node.path("content").asText(null));
+//                dto.setUrlToImage(node.path("urlToImage").asText(null));
+//                dto.setPublishedAt(node.path("publishedAt").asText(null));
+//
+//                JsonNode sourceNode = node.path("source");
+//                if (!sourceNode.isMissingNode()) {
+//                    dto.setId(sourceNode.path("id").asText(null));
+//                    dto.setName(sourceNode.path("name").asText(null));
+//                }
+//
+//                dtoList.add(dto);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return dtoList;
+//    }
+//}
 
 
 
