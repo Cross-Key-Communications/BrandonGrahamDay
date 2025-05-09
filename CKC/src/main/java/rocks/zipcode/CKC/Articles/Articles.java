@@ -1,3 +1,4 @@
+
 package rocks.zipcode.CKC.Articles;
 
 import jakarta.persistence.*;
@@ -21,59 +22,58 @@ public class Articles {
     String articleBody;
     @Embedded
     ArticlesSource source;
+public Long getId() {
+    return id;
+}
 
-    public Long getId() {
-        return id;
-    }
+public void setId(Long id) {
+    this.id = id;
+}
+public String getTitle() {
+    return title;
+}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
+public void setTitle(String title) {
+    this.title = title;
+}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+public String getAuthor() {
+    return author;
+}
 
-    public String getAuthor() {
-        return author;
-    }
+public void setAuthor(String author) {
+    this.author = author;
+}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+public String getThumbnail() {
+    return thumbnail;
+}
 
-    public String getThumbnail() {
-        return thumbnail;
-    }
+public void setThumbnail(String thumbnail) {
+    this.thumbnail = thumbnail;
+}
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
+public String getArticleBody() {
+    return articleBody;
+}
 
-    public String getArticleBody() {
-        return articleBody;
-    }
+public void setArticleBody(String articleBody) {
+    this.articleBody = articleBody;
+}
 
-    public void setArticleBody(String articleBody) {
-        this.articleBody = articleBody;
-    }
+public Articles(){}
 
-    public Articles(){}
+public Articles(Long id, String title, String author, String thumbnail, String articleBody) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.thumbnail = thumbnail;
+    this.articleBody = articleBody;
+}
 
-    public Articles(Long id, String title, String author, String thumbnail, String articleBody) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.thumbnail = thumbnail;
-        this.articleBody = articleBody;
-    }
+public void setArticleDescription(String description) {
+}
 
-    public void setArticleDescription(String description) {
-    }
-
-    public void setSource(ArticlesSource source) {
-    }
+public void setSource(ArticlesSource source) {
+}
 }
