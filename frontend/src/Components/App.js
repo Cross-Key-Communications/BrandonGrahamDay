@@ -1,28 +1,20 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NewsGrid from './NewsGrid';
+import NewsArticle from './NewsArticle';
+import './App.css';
 
 function App() {
-  const [selectedArticle, setSelectedArticle] = useState(null);
-
   return (
-    <div className="App">
-      <h1>CrossKey Communication</h1>
-      {selectedArticle ? (
-        <div>
-          <button onClick={() => setSelectedArticle(null)}>← Back to Headlines</button>
-          <iframe
-            src={selectedArticle.url}
-            title={selectedArticle.title}
-            width="100%"
-            height="600px"
-            style={{ border: 'none', marginTop: '1rem' }}
-          />
-        </div>
-      ) : (
-        <NewsGrid onArticleClick={setSelectedArticle} />
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <h1>CrossKey Communication</h1>
+        <Routes>
+          <Route path="/" element={<NewsGrid />} />
+          <Route path="/article/:id" element={<NewsArticle />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

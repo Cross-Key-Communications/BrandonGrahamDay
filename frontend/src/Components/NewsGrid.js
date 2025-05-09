@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import NewsCard from './NewsCard';
 import './NewsGrid.css';
+import { useNavigate } from 'react-router-dom';
 
-function NewsGrid({ onArticleClick }) {
+function NewsGrid() {
   const [articles, setArticles] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8081/articles/fetch')
       .then(response => response.json())
-      .then(data => {
-        console.log('Fetched articles:', data);
-        setArticles(data);
-      })
-      .catch(error => console.error('Error fetching articles:', error));
+      .then(data => setArticles(data))
+      .catch(err => console.error('Fetch error:', err));
   }, []);
+
+  const handleClick = (article, index) => {
+    navigate(`/article/${index}`, { state: { article } });
+  };
 
   return (
     <div className="news-grid">
-      {Array.isArray(articles) && articles.map((article, index) => (
-        <NewsCard key={index} article={article} onClick={onArticleClick} />
+      {articles.map((article, index) => (
+        <NewsCard key={index} article={article} onClick={() => handleClick(article, index)} />
       ))}
     </div>
   );
