@@ -114,6 +114,21 @@ public List<Comments> fetchComments() {
         return commentsRepository.save(comments);
     }
 
+//get comments for specific article
+    @GetMapping("/comments/{articleId}" )
+    public List<Comments> getCommentsByArticleId(@PathVariable Long articleId){
+        return commentsRepository.findByArticleId(articleId);
+    }
+
+    //post comments for specific article
+    @PostMapping("/comments/{articleId}")
+    public Comments postComment(@PathVariable Long articleId, @RequestBody Comments comment) {
+        Articles article = articlesRepository.findById(articleId).orElseThrow(() -> new RuntimeException("article not found"));
+        comment.setArticle(article);
+        return commentsRepository.save(comment);
+    }
+
+
 //    @GetMapping("/articles/{id}")
 //    public String showArticle(@PathVariable Long id, Model model) {
 //        // Load article, comments, etc.

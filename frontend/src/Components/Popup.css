@@ -1,0 +1,48 @@
+.popup-button {
+margin: 100px;
+background: #6c63ff;
+padding: 500px 500px;
+color: white;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.modal {
+font-size: 50px
+background: white;
+padding: 500px;
+border-radius: 10px;
+max-width: 4000px;
+max-height: 4000px;
+margin: auto;
+font-size: 50px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.modal .header {
+font-size: 50px;
+font-weight: bold;
+margin-bottom: 50px;
+}
+
+.modal .content {
+margin-bottom: 50px;
+}
+
+.modal .actions {
+text-align: right;
+}
+
+.modal .close {
+background: none;
+border: none;
+font-size: 50px;
+float: right;
+cursor: pointer;
+
+}

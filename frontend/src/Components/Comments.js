@@ -7,7 +7,7 @@ const Comments = ({ articleId }) => {
 
   // Fetch comments from backend on component mount
     useEffect(() => {
-      fetch('http://localhost:8081/fetch/comments?articleId=${articleId}' )
+      fetch(`http://localhost:8081/fetch/comments?articleId=${articleId}` )
         .then(res => res.json())
         .then(data => setComments(data))
         .catch(err => console.error("Error fetching comments:", err));
@@ -16,7 +16,7 @@ const Comments = ({ articleId }) => {
   const handleAddComment = () => {
       if (input.trim()) {
       //POST request to backend
-      fetch('http://localhost:8081/add/comment', {
+      fetch(`http://localhost:8081/add/comment`, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',

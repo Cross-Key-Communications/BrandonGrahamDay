@@ -1,18 +1,43 @@
 import './App.css';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import "slick-carousel/slick/slick.css";
-import React, { useState } from 'react';
 import ImageSlider from './ImageSlider';
 import NewsGrid from './NewsGrid';
 import Footer from './Footer';
 import Comment from './Comments';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [showPopup, setShowPopup] = useState(true);
+
+useEffect(() => {
+const timer = setTimeout(() => {
+setShowPopup(false);
+}, 10000);
+
+return () => clearTimeout(timer);
+}, []);
 
   return (
     <div className="App">
-<Header />
+<Popup open={showPopup} modal onClose={() => setShowPopup(false)
+}>
+<div className="modal">
+ <button className="close" onClick={() => setShowPopup(false)}>&times;</button>
+ <div className="header">Welcome To CKC!</div>
+ <div className="content">
+ Sign-In or Sign-Up</div>
+ <div className="actions">
+ <button className="button" onClick={() => setShowPopup(false)}>
+ Close
+ </button>
+ </div>
+ </div>
+    </Popup>
+    <Header />
 <ImageSlider />
 <Comment />
       {selectedArticle ? (
