@@ -8,15 +8,18 @@ import Footer from './Footer';
 import Comment from './Comments';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import CategoryNavBar from './CategoryNavBar';
 
 function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  console.log("Selected category:", selectedCategory);
   const [showPopup, setShowPopup] = useState(true);
 
 useEffect(() => {
 const timer = setTimeout(() => {
 setShowPopup(false);
-}, 10000);
+}, 5000);
 
 return () => clearTimeout(timer);
 }, []);
@@ -38,6 +41,7 @@ return () => clearTimeout(timer);
  </div>
     </Popup>
     <Header />
+    <CategoryNavBar onCategorySelect={setSelectedCategory} />
 <ImageSlider />
 <Comment />
       {selectedArticle ? (
@@ -54,7 +58,7 @@ return () => clearTimeout(timer);
       ) : (
         <NewsGrid onArticleClick={setSelectedArticle} />
       )}
-      <NewsGrid/>
+      <NewsGrid />
       <Footer />
     </div>
   );

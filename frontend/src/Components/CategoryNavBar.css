@@ -1,0 +1,31 @@
+.category-navbar {
+display: flex;
+overflow-x: auto;
+background-color: ;
+padding: 10px 20px;
+border-bottom: 2px solid #e0e0e0;
+}
+
+.category-tab {
+margin-right: 1rem;
+padding: 10px 15px;
+font-size: 1rem;
+background: none;
+border: none;
+border-bottom: 3px solid transparent;
+cursor: pointer;
+color: #333;
+transition: all 0.2s ease-in-out;
+}
+
+.category-tab:hover {
+color: #0077cc;
+}
+
+.category-tab.active {
+border-bottom: 3px solid #0077cc;
+font-weight: bold;
+color: #0077cc;
+
+
+}

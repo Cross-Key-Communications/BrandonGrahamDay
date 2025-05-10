@@ -3,7 +3,7 @@ import NewsCard from './NewsCard';
 import './NewsGrid.css';
 
 
-function NewsGrid({ onArticleClick }) {
+function NewsGrid({ onArticleClick, selectedCategory }) {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -11,10 +11,16 @@ function NewsGrid({ onArticleClick }) {
       .then(response => response.json())
       .then(data => {
         console.log('Fetched articles:', data);
-        setArticles(data);
+        console.log('Selected category:', selectedCategory);
+
+        const filtered = selectedCategory
+        ? data.filter(article => article.category?.toLowerCase() === selectedCategory.toLowerCase())
+       : data;
+console.log('Filtered articles:', filtered);
+        setArticles(filtered);
       })
       .catch(error => console.error('Error fetching articles:', error));
-  }, []);
+  }, [selectedCategory]);
 
   return (
     <div className="news-grid">
