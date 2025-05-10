@@ -3,6 +3,8 @@ package rocks.zipcode.CKC.Comments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rocks.zipcode.CKC.Articles.Articles;
+import rocks.zipcode.CKC.Articles.ArticlesRepository;
 import rocks.zipcode.CKC.User.Users;
 import rocks.zipcode.CKC.User.UserRepository;
 
@@ -21,6 +23,8 @@ public class CommentsController {
     private final CommentsRepository commentsRepository;
     private final UserRepository userRepository;
 
+    @Autowired
+    private ArticlesRepository articlesRepository;
 
     @Autowired
     public CommentsController(CommentsRepository commentsRepository, UserRepository userRepository) {
@@ -30,19 +34,19 @@ public class CommentsController {
 
 
     @PostMapping("/submit")
-    public String submitComment(@RequestParam Long userId, /*@RequestParam Long articleId,*/ @RequestParam String text) {
+    public String submitComment(@RequestParam Long userId, @RequestParam Long articleId, @RequestParam String text) {
         // the use of optional allows for null value to exist
         Users users = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("You must have an account to comment."));
         // think about redirecting to sign in page after it's made
 
 
-        // Articles article = articleRepository.findById(articleId).orElse("Article no longer exists");
+         Articles article = articlesRepository.findById(articleId).orElseThrow(() -> new RuntimeException("Article no longer exists"));
 
 
         Comments newComment = new Comments();
         newComment.setUser(users);
-        // newComment.setArticle(article);
+        newComment.setArticle(article);
         newComment.setText(text);
         newComment.setDatePosted(new Date());
 
@@ -50,6 +54,11 @@ public class CommentsController {
         commentsRepository.save(newComment);
         return "Comment Submitted";
         // return "redirect:/articles/" + articleId;
+    }
+
+    @GetMapping("/article/{articleId}")
+    public List<Comments> getCommentsByArticle(@PathVariable Long articleId) {
+        return commentsRepository.findByArticleId(articleId);
     }
 
 //    @GetMapping("/post/{postId}")
@@ -98,6 +107,11 @@ public class CommentsController {
     @GetMapping("/fetch/comments")
 public List<Comments> fetchComments() {
         return commentsRepository.findAll();
+    }
+
+    @PostMapping("/add/comments")
+    public Comments addComment(@RequestBody Comments comments) {
+        return commentsRepository.save(comments);
     }
 
 //    @GetMapping("/articles/{id}")

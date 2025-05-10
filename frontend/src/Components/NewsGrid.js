@@ -19,7 +19,7 @@ function NewsGrid({ onArticleClick }) {
   return (
     <div className="news-grid">
       {Array.isArray(articles) && articles.map((article, index) => (
-        <NewsCard key={index} article={article} onClick={onArticleClick} />
+        <NewsCard key={index} article={{ ...article, id: index }} onClick={onArticleClick} />
       ))}
     </div>
   );

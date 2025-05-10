@@ -2,6 +2,7 @@ package rocks.zipcode.CKC.Comments;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import rocks.zipcode.CKC.Articles.Articles;
 import rocks.zipcode.CKC.User.Users;
 
 import java.util.Date;
@@ -30,6 +31,10 @@ public class Comments {
     @Column(name = "date_posted")
     private Date datePosted;
 
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Articles article;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")  // this name should match the column in your DB
@@ -39,11 +44,20 @@ public class Comments {
     public Comments() {}
 
 
-    public Comments(Long id, Users users, String text, Date datePosted) {
+    public Comments(Long id, Users users, String text, Date datePosted, Articles articles) {
         this.id = id;
         this.user = user;
         this.text = text;
         this.datePosted = datePosted;
+        this.article = articles;
+    }
+
+    public Articles getArticle() {
+        return article;
+    }
+
+    public void setArticle(Articles article) {
+        this.article = article;
     }
 
 
