@@ -14,14 +14,16 @@ public class Articles {
     String title;
     @Column(name="Articles_Author")
     String author;
-    @Column(name="Articles_Thumbnail")
+    @Column(name = "Articles_Thumbnail", length = 1000)
     String thumbnail;
-    @Column(name="Articles_Description")
+    @Column(name="Articles_Description",length = 1000)
     String articleDescription;
-    @Column(name="Articles_Body")
+    @Column(name="Articles_Body",length = 100000)
     String articleBody;
     @Embedded
+
     ArticlesSource source;
+
 public Long getId() {
     return id;
 }
@@ -29,6 +31,10 @@ public Long getId() {
 public void setId(Long id) {
     this.id = id;
 }
+
+public ArticlesSource getSource() {
+        return source;
+    }
 public String getTitle() {
     return title;
 }
@@ -72,8 +78,11 @@ public Articles(Long id, String title, String author, String thumbnail, String a
 }
 
 public void setArticleDescription(String description) {
+    this.articleDescription=description;
 }
 
 public void setSource(ArticlesSource source) {
+    this.source = source;
+
 }
 }

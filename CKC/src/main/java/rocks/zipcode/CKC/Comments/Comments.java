@@ -2,6 +2,7 @@ package rocks.zipcode.CKC.Comments;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import rocks.zipcode.CKC.Articles.Articles;
 import rocks.zipcode.CKC.User.Users;
 
 
@@ -17,12 +18,6 @@ public class Comments {
     private Long id;
 
 
-    // Optional: enable this when Article entity is ready
-    // @ManyToOne
-    // @JoinColumn(name = "article_id")
-    // private Articles article;
-
-
     @Column(name = "text")
     private String text;
 
@@ -30,6 +25,10 @@ public class Comments {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_posted")
     private Date datePosted;
+
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Articles articles;
 
 
     @ManyToOne
@@ -40,9 +39,10 @@ public class Comments {
     public Comments() {}
 
 
-    public Comments(Long id, Users users, String text, Date datePosted) {
+    public Comments(Long id, Users user, Articles articles, String text, Date datePosted) {
         this.id = id;
         this.user = user;
+        this.articles = articles;
         this.text = text;
         this.datePosted = datePosted;
     }
@@ -70,4 +70,6 @@ public class Comments {
 
 
     public void setDatePosted(Date datePosted) { this.datePosted = datePosted; }
+    public Articles getArticle() { return articles; }
+    public void setArticle(Articles articles) { this.articles = articles; }
 }
