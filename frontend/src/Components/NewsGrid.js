@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import NewsCard from './NewsCard';
 import './NewsGrid.css';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer.css';
+
 
 function NewsGrid() {
   const [articles, setArticles] = useState([]);

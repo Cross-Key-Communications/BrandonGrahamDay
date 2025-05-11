@@ -1,13 +1,16 @@
 import React from 'react'
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="header">
     <div className="header-left">
       <img src="/a.png" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
-      <h1 style={{ margin: 0 }}>Cross Key Communication</h1>
-      </div>
+        <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+        <h1 style={{ margin: 0 }}>CrossKey Communication</h1>
+        </Link>
+     </div>
       <nav style={{ flex:1, textAlign: 'center' }}>
         <a href="#world" style={{ marginRight: '15px', color: 'white' }}>World</a>
         <a href="#US" style={{ marginRight: '15px', color: 'white' }}>US</a>

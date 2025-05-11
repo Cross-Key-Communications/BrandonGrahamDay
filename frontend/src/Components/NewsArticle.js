@@ -2,6 +2,8 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './NewsArticle.css';
 import Comments from './Comments';
+import Footer from './Footer.css';
+
 
 
 function NewsArticle() {
