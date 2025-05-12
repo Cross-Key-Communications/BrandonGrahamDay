@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Header from './Header';
 import "slick-carousel/slick/slick.css";
 import ImageSlider from './ImageSlider';
@@ -10,7 +11,14 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import CategoryNavBar from './CategoryNavBar';
 
-function App() {
+
+const Favorite = () => <h2>Favorite Article Page</h2>;
+
+const World = () => <h2>World News Page</h2>;
+const India = () => <h2>India Page</h2>;
+const Canada = () => <h2>Canada Page</h2>;
+
+function Home() {
   const [selectedArticle, setSelectedArticle] = useState(null);
   console.log("Selected article:", selectedArticle);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -107,6 +115,19 @@ style={{
       )}
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/world" element={<World />} />
+        <Route path="/india" element={<India />} />
+        <Route path="/canada" element={<Canada />} />
+      </Routes>
+    </Router>
   );
 }
 

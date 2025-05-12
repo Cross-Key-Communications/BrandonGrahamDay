@@ -1,5 +1,6 @@
 import React from 'react';
 import './Popup.css';
+import { Link } from 'react-router-dom';
 
 const Popup = ({ show, onClose, children }) => {
 if (!show) return null;
