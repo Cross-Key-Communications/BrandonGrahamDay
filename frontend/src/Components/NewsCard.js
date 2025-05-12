@@ -5,7 +5,7 @@ import Comments from './Comments';
 function NewsCard({ article, onClick }) {
   return (
     <div className="news-card-link" onClick={() => onClick(article)}>
-      <div className="news-card">
+      <div className="news-card-content">
         <img
           src={article.urlToImage}
           alt={article.title}

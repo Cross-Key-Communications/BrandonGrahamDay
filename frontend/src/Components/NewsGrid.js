@@ -25,7 +25,7 @@ console.log('Filtered articles:', filtered);
   return (
     <div className="news-grid">
       {Array.isArray(articles) && articles.map((article, index) => (
-        <NewsCard key={index} article={{ ...article, id: index }} onClick={onArticleClick} />
+        <NewsCard key={article.id || index} article={article} onClick={onArticleClick} />
       ))}
     </div>
   );

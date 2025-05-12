@@ -109,7 +109,7 @@ public List<Comments> fetchComments() {
         return commentsRepository.findAll();
     }
 
-    @PostMapping("/add/comments")
+    @PostMapping("/add/comment")
     public Comments addComment(@RequestBody Comments comments) {
         return commentsRepository.save(comments);
     }

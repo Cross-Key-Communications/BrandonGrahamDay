@@ -12,6 +12,7 @@ import CategoryNavBar from './CategoryNavBar';
 
 function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  console.log("Selected article:", selectedArticle);
   const [selectedCategory, setSelectedCategory] = useState(null);
   console.log("Selected category:", selectedCategory);
   const [showPopup, setShowPopup] = useState(true);
@@ -43,7 +44,6 @@ return () => clearTimeout(timer);
     <Header />
     <CategoryNavBar onCategorySelect={setSelectedCategory} />
 <ImageSlider />
-<Comment />
       {selectedArticle ? (
         <div>
           <button onClick={() => setSelectedArticle(null)}>← Back to Headlines</button>
@@ -54,11 +54,11 @@ return () => clearTimeout(timer);
             height="600px"
             style={{ border: 'none', marginTop: '1rem' }}
           />
+          <Comment articleId={selectedArticle.id} />
         </div>
       ) : (
         <NewsGrid onArticleClick={setSelectedArticle} />
       )}
-      <NewsGrid />
       <Footer />
     </div>
   );

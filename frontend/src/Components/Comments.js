@@ -16,7 +16,7 @@ const Comments = ({ articleId }) => {
   const handleAddComment = () => {
       if (input.trim()) {
       //POST request to backend
-      fetch(`http://localhost:8081/add/comment`, {
+      fetch(`http://localhost:8081/api/comments/add/comment`, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
@@ -50,8 +50,11 @@ const Comments = ({ articleId }) => {
         </button>
         <ul className="comments-list">
           {comments.map((c, i) => (
-            <li key={i} className="comments-item">
-              {typeof c === 'string' ? c : c.text}
+            <li key={i} className="comments-item"
+            onClick={() => alert(`Comments clicked: ${c.text}`)}
+            style={{ cursor: 'pointer', textDecoration: 'underline' }}
+            >
+              {c.text}
             </li>
           ))}
         </ul>
