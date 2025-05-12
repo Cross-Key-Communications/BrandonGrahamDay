@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './NewsArticle.css';
 import Comments from './Comments';
-import Footer from './Footer.css';
+import './Footer.css';
 
 function NewsArticle() {
   const location = useLocation();
@@ -24,7 +24,7 @@ function NewsArticle() {
 
   return (
     <div className="news-article">
-      <button onClick={() => navigate('/')}>← Back to Headlines</button>
+      <button className="btn" onClick={() => navigate('/')}>← Back to Headlines</button>
 
       {article.thumbnail && (
         <img src={article.thumbnail || "https://via.placeholder.com/300"} alt={article.title} />
