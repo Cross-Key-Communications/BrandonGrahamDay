@@ -4,8 +4,6 @@ import './NewsArticle.css';
 import Comments from './Comments';
 import Footer from './Footer.css';
 
-
-
 function NewsArticle() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,6 +12,15 @@ function NewsArticle() {
   if (!article) {
     return <p>No article data. <button onClick={() => navigate('/')}>Go back</button></p>;
   }
+
+  // Format the published date, if it exists
+  const formattedDate = article.publishedAt
+    ? new Date(article.publishedAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    : null;
 
   return (
     <div className="news-article">
@@ -26,16 +33,18 @@ function NewsArticle() {
       <h1>{article.title}</h1>
 
       <p className="news-article-author">
-        {article.author ? `By ${article.author}` : 'Unknown Author'} •{' '}
-        {/* publishedAt doesn't exist yet; show placeholder or skip */}
-        {'Date Unknown'}
+        {article.author ? `By ${article.author}` : 'Unknown Author'}
+        {formattedDate && ` • ${formattedDate}`}
       </p>
 
       <h3 className="news-article-description">{article.articleDescription}</h3>
       <p className="news-article-content">{article.articleBody}</p>
 
-      <p className="news-article-source">Source: {article.source?.name || 'N/A'}</p>
-    <Comments articleId={article.id} />
+      {article.source?.name && (
+        <p className="news-article-source">Source: {article.source.name}</p>
+      )}
+
+      <Comments articleId={article.id} />
     </div>
   );
 }

@@ -3,10 +3,11 @@ import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './ImageSlider.css';
+import './ImageSlider.css'; // Make sure this exists
 
 const ImageSlider = () => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,9 +19,13 @@ const ImageSlider = () => {
           article.thumbnail.startsWith('http') &&
           !article.thumbnail.endsWith('.svg')
         );
-        setArticles(filtered);
+        setArticles(filtered.slice(1, 5));
+        setLoading(false);
       })
-      .catch((error) => console.error('Error fetching articles:', error));
+      .catch((error) => {
+        console.error('Error fetching articles:', error);
+        setLoading(false);
+      });
   }, []);
 
   const settings = {
@@ -32,6 +37,14 @@ const ImageSlider = () => {
     autoplay: true,
     autoplaySpeed: 3000,
   };
+
+  if (loading) {
+    return (
+      <div className="image-slider-wrapper" style={{ textAlign: 'center', padding: '50px 0' }}>
+        <p>Loading slider...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="image-slider-wrapper">
@@ -47,6 +60,7 @@ const ImageSlider = () => {
               onError={(e) => { e.target.src = "/placeholder.jpg"; }}
               alt={article.title}
               className="image-slider-img"
+              loading="lazy"
             />
             <div className="image-slider-overlay">
               <h2 className="image-slider-title">
