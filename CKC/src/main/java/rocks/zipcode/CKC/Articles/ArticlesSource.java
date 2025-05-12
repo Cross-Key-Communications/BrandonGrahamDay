@@ -5,11 +5,17 @@ import jakarta.persistence.*;
 @Embeddable
 public class ArticlesSource {
 
+    @Column(name = "source_id")
     private String id;
+
+    @Column(name = "source_name")
     private String name;
 
     public ArticlesSource(){}
-    public ArticlesSource(String name, String id){}
+    public ArticlesSource(String name, String id){
+        this.name = name;
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;

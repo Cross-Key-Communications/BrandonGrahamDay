@@ -1,6 +1,10 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './NewsArticle.css';
+import Comments from './Comments';
+import Footer from './Footer.css';
+
+
 
 function NewsArticle() {
   const location = useLocation();
@@ -14,17 +18,24 @@ function NewsArticle() {
   return (
     <div className="news-article">
       <button onClick={() => navigate('/')}>← Back to Headlines</button>
-      {article.urlToImage && (
+
+      {article.thumbnail && (
         <img src={article.thumbnail || "https://via.placeholder.com/300"} alt={article.title} />
       )}
+
       <h1>{article.title}</h1>
+
       <p className="news-article-author">
         {article.author ? `By ${article.author}` : 'Unknown Author'} •{' '}
-        {new Date(article.publishedAt).toLocaleDateString()}
+        {/* publishedAt doesn't exist yet; show placeholder or skip */}
+        {'Date Unknown'}
       </p>
-      <h3 className="news-article-description">{article.description}</h3>
-      <p className="news-article-content">{article.content}</p>
-      <p className="news-article-source">Source: {article.name}</p>
+
+      <h3 className="news-article-description">{article.articleDescription}</h3>
+      <p className="news-article-content">{article.articleBody}</p>
+
+      <p className="news-article-source">Source: {article.source?.name || 'N/A'}</p>
+    <Comments articleId={article.id} />
     </div>
   );
 }
