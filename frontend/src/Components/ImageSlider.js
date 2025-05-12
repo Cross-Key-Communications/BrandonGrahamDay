@@ -1,20 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
+import { useNavigate } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './ImageSlider.css'; // Make sure this exists
 
 const ImageSlider = () => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8081/articles')
       .then((response) => response.json())
-      .then((data) => setArticles(data))
-      .catch((error) => console.error('Error fetching articles:', error));
+      .then((data) => {
+        const filtered = data.filter(article =>
+          article.thumbnail &&
+          article.thumbnail.startsWith('http') &&
+          !article.thumbnail.endsWith('.svg')
+        );
+        setArticles(filtered.slice(1, 5));
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching articles:', error);
+        setLoading(false);
+      });
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 600,
     slidesToShow: 1,
@@ -23,19 +38,34 @@ const ImageSlider = () => {
     autoplaySpeed: 3000,
   };
 
+  if (loading) {
+    return (
+      <div className="image-slider-wrapper" style={{ textAlign: 'center', padding: '50px 0' }}>
+        <p>Loading slider...</p>
+      </div>
+    );
+  }
+
   return (
-    <div style={{ width: '100%', maxWidth: '1000px', margin: '20px auto' }}>
+    <div className="image-slider-wrapper">
       <Slider {...settings}>
         {articles.map((article, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            className="image-slider-card"
+            onClick={() => navigate(`/article/${article.id}`, { state: { article } })}
+          >
             <img
-              src={article.urlToImage}
+              src={article.thumbnail || "/placeholder.jpg"}
+              onError={(e) => { e.target.src = "/placeholder.jpg"; }}
               alt={article.title}
-              style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+              className="image-slider-img"
+              loading="lazy"
             />
-            <div style={{ position: 'absolute', bottom: '30px', left: '30px', color: 'white', background: 'rgba(0,0,0,0.5)', padding: '10px', maxWidth: '80%' }}>
-              <h3>{article.title}</h3>
-              <p>{article.description}</p>
+            <div className="image-slider-overlay">
+              <h2 className="image-slider-title">
+                {article.title || "Untitled Article"}
+              </h2>
             </div>
           </div>
         ))}

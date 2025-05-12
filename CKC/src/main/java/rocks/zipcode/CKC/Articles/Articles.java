@@ -3,6 +3,8 @@ package rocks.zipcode.CKC.Articles;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name="articles")
 public class Articles {
@@ -20,8 +22,11 @@ public class Articles {
     String articleDescription;
     @Column(name="Articles_Body",length = 100000)
     String articleBody;
-    @Embedded
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "Articles_PublishedAt")
+    private Date publishedAt;
 
+    @Embedded
     ArticlesSource source;
 
 public Long getId() {
@@ -69,12 +74,13 @@ public void setArticleBody(String articleBody) {
 
 public Articles(){}
 
-public Articles(Long id, String title, String author, String thumbnail, String articleBody) {
+public Articles(Long id, String title, String author, String thumbnail, String articleBody, Date publishedAt) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.thumbnail = thumbnail;
     this.articleBody = articleBody;
+    this.publishedAt=publishedAt;
 }
 
 public void setArticleDescription(String description) {
@@ -85,4 +91,11 @@ public void setSource(ArticlesSource source) {
     this.source = source;
 
 }
+    public Date getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(Date publishedAt) {
+        this.publishedAt = publishedAt;
+    }
 }

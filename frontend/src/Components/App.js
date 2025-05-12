@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home'; // 👈 This wraps both ImageSlider & NewsGrid
+import Home from './Home'; 
 import NewsArticle from './NewsArticle';
 import Footer from './Footer';
 import './App.css';
