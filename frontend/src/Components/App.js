@@ -13,7 +13,8 @@ import CategoryNavBar from './CategoryNavBar';
 
 
 const Favorite = () => <h2>Favorite Article Page</h2>;
-
+const Story1  = () => <h2>My Favorite Story1</h2>
+const Story2  = () => <h2>My Favorite Story2</h2>
 const World = () => <h2>World News Page</h2>;
 const India = () => <h2>India Page</h2>;
 const Canada = () => <h2>Canada Page</h2>;
@@ -123,6 +124,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/story1" element={<Story1 />} />
+        <Route path="/story2" element={<Story2 />} />
         <Route path="/world" element={<World />} />
         <Route path="/india" element={<India />} />
         <Route path="/canada" element={<Canada />} />

@@ -11,6 +11,14 @@ const Header = () => {
 
       <nav className="nav-links">
         <ul className="nav-list">
+         <li className="dropdown">
+                    <a href="#favorite">Favorite</a>
+                    <ul className="dropdown-content">
+                      <li><a href="#story1">Story1</a></li>
+                      <li><a href="#story2">Story2</a></li>
+                    </ul>
+                  </li>
+
           <li className="dropdown">
             <a href="#world">World</a>
             <ul className="dropdown-content">
