@@ -28,17 +28,63 @@ return () => clearTimeout(timer);
   return (
     <div className="App">
 <Popup open={showPopup} modal onClose={() => setShowPopup(false)
-}>
-<div className="modal">
- <button className="close" onClick={() => setShowPopup(false)}>&times;</button>
- <div className="header">Welcome To CKC!</div>
- <div className="content">
- Sign-In or Sign-Up</div>
- <div className="actions">
- <button className="button" onClick={() => setShowPopup(false)}>
+}
+contentStyle={{
+  width: '500px',
+     height: '500px',
+     borderRadius: '12px',
+     padding: '100px',
+     display: 'flex',
+     flexDirection: 'column',
+     justifyContent: 'center',
+     alignItems: 'center',
+     fontFamily: 'Helvetica, sans-serif',
+      boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+      backgroundColor: '#fff',
+     fontSize: '60px',
+ }}
+ >
+ <div style={{ textAlign: 'center' }}>
+     <img
+       src="/a.png"
+       alt="CKC Logo"
+       style={{ width: '100px', height: '100px', marginBottom: '20px', borderRadius: '50%' }}
+     />
+     <h2 style={{ fontSize: '28px', color: '#111', marginBottom: '10px' }}>
+           Welcome To <span style={{ color: '#8B0000' }}>CKC</span>!
+         </h2>
+         <p style={{ fontSize: '18px', marginBottom: '30px' }}>
+               Sign-In or Sign-Up to get started.
+             </p>
+
+<button
+      style={{
+        padding: '10px 20px',
+        backgroundColor: '#8B0000',
+        color: 'white',
+        border: 'none',
+        borderRadius: '8px',
+        fontSize: '16px',
+        cursor: 'pointer',
+        marginBottom: '10px'
+      }}
+    >
+      Sign In / Sign Up
+    </button>
+     <br />
+ <button
+ onClick={() => setShowPopup(false)}
+style={{
+        padding: '6px 14px',
+        backgroundColor: '#ccc',
+        border: 'none',
+        borderRadius: '6px',
+        fontSize: '14px',
+        cursor: 'pointer'
+      }}
+ >
  Close
  </button>
- </div>
  </div>
     </Popup>
     <Header />
