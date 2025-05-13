@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './SideBox.css';
 
 function SidebarFeed({ title, fetchData, renderItem }) {
   const [items, setItems] = useState([]);
