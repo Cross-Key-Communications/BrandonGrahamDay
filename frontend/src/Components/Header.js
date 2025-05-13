@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <header className="header">
-      {/* Logo and Title (left) */}
       <div className="header-left">
         <img src="/a.png" alt="Logo" />
         <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
@@ -13,8 +16,13 @@ const Header = () => {
         </Link>
       </div>
 
-      {/* Navigation links (center) */}
-      <nav className="nav-links">
+      {/* Hamburger icon */}
+      <div className="hamburger" onClick={toggleMenu}>
+        ☰
+      </div>
+
+      {/* Nav links */}
+      <nav className={`nav-links ${menuOpen ? 'active' : ''}`}>
         <Link to="/world">World</Link>
         <Link to="/us">US</Link>
         <Link to="/politics">Politics</Link>
@@ -23,7 +31,6 @@ const Header = () => {
         <Link to="/favorite">Favorite</Link>
       </nav>
 
-      {/* Search bar (right) */}
       <nav className="search-bar">
         <input type="text" placeholder="Search..." />
       </nav>

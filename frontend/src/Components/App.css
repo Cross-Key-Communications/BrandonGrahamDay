@@ -1,7 +1,16 @@
+/* === Layout: Sticky Footer Setup === */
 .App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   text-align: center;
 }
 
+.content {
+  flex: 1;
+}
+
+/* === App Logo Animation === */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,6 +22,7 @@
   }
 }
 
+/* === Header Styling === */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,6 +38,7 @@
   color: #61dafb;
 }
 
+/* === Logo Spin Animation === */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +47,41 @@
     transform: rotate(360deg);
   }
 }
+
+/* 🌟 Presentation Mode: Large Fonts for Distance Viewing 🌟 */
+
+body {
+  font-size: 26px;
+  line-height: 1.8;
+  font-family: Arial, sans-serif;
+}
+
+/* Headings */
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+/* Text elements */
+p,
+span,
+li {
+  font-size: 1.75rem;
+}
+
+/* Inputs, Textareas, and Buttons */
+input,
+textarea,
+button {
+  font-size: 1.6rem;
+  padding: 16px 24px;
+}
+
