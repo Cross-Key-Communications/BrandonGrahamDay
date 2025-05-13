@@ -1,0 +1,42 @@
+.home-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  max-width: 100%;
+  margin-bottom: 20px; /* prevent layout stretching too far down */
+}
+
+/* Center slider and news content */
+.main-content {
+  flex: 1;
+  max-width: 1000px;
+}
+
+/* Side images on left and right */
+.side-image {
+  width: 300px;
+  height: 350px;
+  margin-top: 0;
+}
+
+.side-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or use "contain" to show full image without cropping */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.news-section {
+  width: 100%;
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+}
+
+/* Optional: hide side images on smaller screens */
+@media (max-width: 900px) {
+  .side-image {
+    display: none;
+  }
+}
