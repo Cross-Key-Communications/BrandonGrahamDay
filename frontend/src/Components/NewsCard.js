@@ -1,8 +1,14 @@
 import React from 'react';
 import './NewsCard.css';
 
-function NewsCard({ article, onClick }) {
-  const isPlaceholder = !article.thumbnail;
+function NewsCard({ article, onClick, isInitiallyFavorite = false, lockFavorite = false }) {
+  const [isFavorite, setIsFavorite] = useState(isInitiallyFavorite);
+
+  const toggleFavorite = (e) => {
+    e.stopPropagation(); // prevent navigation
+    if (lockFavorite) return;
+    setIsFavorite(prev => !prev);
+  };
 
   return (
     <div className="news-card-link" onClick={onClick}>
@@ -27,6 +33,13 @@ function NewsCard({ article, onClick }) {
           <h3>{article.title}</h3>
           <p>{article.articleDescription}</p>
         </div>
+
+        <button
+          className={`favorite-btn ${isFavorite ? 'favorited' : ''}`}
+          onClick={toggleFavorite}
+        >
+          ★
+        </button>
       </div>
     </div>
   );

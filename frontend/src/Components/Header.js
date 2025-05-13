@@ -1,25 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <header className="header">
-    <div className="header-left">
-      <img src="/a.png" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
+      <div className="header-left">
+        <img src="/a.png" alt="Logo" />
         <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-        <h1 style={{ margin: 0 }}>CrossKey Communication</h1>
+          <h1>CrossKey Communication</h1>
         </Link>
-     </div>
-      <nav style={{ flex:1, textAlign: 'center' }}>
-        <a href="#world" style={{ marginRight: '15px', color: 'white' }}>World</a>
-        <a href="#US" style={{ marginRight: '15px', color: 'white' }}>US</a>
-        <a href="#politics" style={{ marginRight: '15px' , color: 'white' }}>Politics</a>
-        <a href="#entertainment" style={{ marginRight: '15px' , color: 'white' }}>Entertainment</a>
-         <a href="#tech." style={{ color: 'white' }}>Tech.</a>
+      </div>
+
+      {/* Hamburger icon */}
+      <div className="hamburger" onClick={toggleMenu}>
+        ☰
+      </div>
+
+      {/* Nav links */}
+      <nav className={`nav-links ${menuOpen ? 'active' : ''}`}>
+        <Link to="/world">World</Link>
+        <Link to="/us">US</Link>
+        <Link to="/politics">Politics</Link>
+        <Link to="/entertainment">Entertainment</Link>
+        <Link to="/tech">Tech.</Link>
+        <Link to="/favorite" onClick={() => setMenuOpen(false)}>Favorite</Link>
       </nav>
-      <nav style={{ flex:1, textAlign: 'right' }}>
-      <input type="text" placeholder="Search..." style={{ padding: '6px 10px', borderRadius: '4px', border: '1px solid #ccc'}} /> </nav>
+
+      <nav className="search-bar">
+        <input type="text" placeholder="Search..." />
+      </nav>
     </header>
   );
 };
