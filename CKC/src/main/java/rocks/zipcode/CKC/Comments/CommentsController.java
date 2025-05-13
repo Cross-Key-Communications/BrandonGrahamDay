@@ -47,6 +47,16 @@ public class CommentsController {
         return commentsRepository.save(comment);
     }
 
+    @GetMapping("/article/{articleId}")
+    public ResponseEntity<List<Comments>> getCommentsByArticle(@PathVariable Long articleId) {
+        List<Comments> comments = commentsRepository.findByArticlesId(articleId);
+        if (comments.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(comments);
+    }
+
+
     @GetMapping("/fetch/all")
     public List<Comments> getAllComments() {
         return (List<Comments>) commentsRepository.findAll();

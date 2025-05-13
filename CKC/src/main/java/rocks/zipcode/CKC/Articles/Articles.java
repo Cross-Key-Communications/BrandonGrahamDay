@@ -2,8 +2,10 @@
 package rocks.zipcode.CKC.Articles;
 
 import jakarta.persistence.*;
+import rocks.zipcode.CKC.Comments.Comments;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="articles")
@@ -29,7 +31,16 @@ public class Articles {
     @Embedded
     ArticlesSource source;
 
-public Long getId() {
+    @OneToMany(mappedBy = "articles")
+    private List<Comments> comments;
+
+    public List<Comments> getComments() { return comments; }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
+    public Long getId() {
     return id;
 }
 
