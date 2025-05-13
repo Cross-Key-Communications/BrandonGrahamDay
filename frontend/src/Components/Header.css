@@ -1,7 +1,7 @@
 /* --- Desktop Styles --- */
 .header {
   background-color: #0c0200;
-  padding: 10px 20px;
+  padding: 0px 20px;
   color: white;
   display: flex;
   flex-wrap: wrap;
@@ -11,12 +11,13 @@
 
 .header-left {
   display: flex;
+  margin-bottom: 0;
   align-items: center;
 }
 
 .header-left img {
-  height: 50px;
-  margin-right: 15px;
+   height: 45px;
+    margin: 0;
 }
 
 .header-left h1 {
@@ -78,7 +79,10 @@
 
   .hamburger {
     display: block;
-    margin: 10px auto; /* center hamburger under logo */
+    font-size: 5rem;
+    cursor: pointer;
+    color: white;
+    margin: 10px auto;
   }
 
   .nav-links {

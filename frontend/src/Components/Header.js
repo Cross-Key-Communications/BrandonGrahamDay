@@ -28,7 +28,7 @@ const Header = () => {
         <Link to="/politics">Politics</Link>
         <Link to="/entertainment">Entertainment</Link>
         <Link to="/tech">Tech.</Link>
-        <Link to="/favorite">Favorite</Link>
+        <Link to="/favorite" onClick={() => setMenuOpen(false)}>Favorite</Link>
       </nav>
 
       <nav className="search-bar">
