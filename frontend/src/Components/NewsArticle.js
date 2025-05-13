@@ -13,7 +13,6 @@ function NewsArticle() {
     return <p>No article data. <button onClick={() => navigate('/')}>Go back</button></p>;
   }
 
-  // Format the published date, if it exists
   const formattedDate = article.publishedAt
     ? new Date(article.publishedAt).toLocaleDateString('en-US', {
         year: 'numeric',
@@ -22,13 +21,20 @@ function NewsArticle() {
       })
     : null;
 
+  const hasImage = !!article.thumbnail;
+
   return (
     <div className="news-article">
       <button onClick={() => navigate('/')}>← Back to Headlines</button>
 
-      {article.thumbnail && (
-        <img src={article.thumbnail || "https://via.placeholder.com/300"} alt={article.title} />
-      )}
+      <div className="article-image-container">
+        <img
+          src={hasImage ? article.thumbnail : "/a.png"}
+          alt={article.title}
+          className="news-article-img"
+        />
+        {!hasImage && <div className="placeholder-label">No image provided - using placeholder</div>}
+      </div>
 
       <h1>{article.title}</h1>
 
@@ -44,7 +50,7 @@ function NewsArticle() {
         <p className="news-article-source">Source: {article.source.name}</p>
       )}
 
-       <Comments key={article.id} articleId={article.id} />
+      <Comments key={article.id} articleId={article.id} />
     </div>
   );
 }
