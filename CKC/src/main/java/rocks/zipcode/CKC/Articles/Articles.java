@@ -1,6 +1,8 @@
 
 package rocks.zipcode.CKC.Articles;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import rocks.zipcode.CKC.Comments.Comments;
 
@@ -32,6 +34,7 @@ public class Articles {
     ArticlesSource source;
 
     @OneToMany(mappedBy = "articles")
+    @JsonIgnore
     private List<Comments> comments;
 
     public List<Comments> getComments() { return comments; }

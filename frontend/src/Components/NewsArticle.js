@@ -44,7 +44,7 @@ function NewsArticle() {
         <p className="news-article-source">Source: {article.source.name}</p>
       )}
 
-      <Comments articleId={article.id} />
+       <Comments key={article.id} articleId={article.id} />
     </div>
   );
 }
