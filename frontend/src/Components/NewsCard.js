@@ -1,45 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NewsCard.css';
 
 function NewsCard({ article, onClick, isInitiallyFavorite = false, lockFavorite = false }) {
   const [isFavorite, setIsFavorite] = useState(isInitiallyFavorite);
 
   const toggleFavorite = (e) => {
-    e.stopPropagation(); // prevent navigation
-    if (lockFavorite) return;
-    setIsFavorite(prev => !prev);
+    e.stopPropagation(); // Prevents triggering the onClick when star is clicked
+    if (!lockFavorite) {
+      setIsFavorite(!isFavorite);
+    }
   };
 
   return (
-    <div className="news-card-link" onClick={onClick}>
-      <div className="news-card">
-        <div className="image-container" style={{ position: 'relative' }}>
-          <img
-            src={article.thumbnail || "/a.png"}
-            alt={article.title}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/a.png";
-            }}
-          />
-          {isPlaceholder && (
-            <div className="placeholder-label">
-              No image provided - using placeholder
-            </div>
-          )}
-        </div>
+    <div className="news-card" onClick={onClick}>
+      <img
+        src={article.thumbnail || '/a.png'}
+        alt={article.title}
+        onError={(e) => (e.target.src = '/a.png')}
+        className="news-thumbnail"
+      />
 
-        <div className="news-card-content">
-          <h3>{article.title}</h3>
-          <p>{article.articleDescription}</p>
-        </div>
+      <div className="news-content">
+        <h3>{article.title}</h3>
+        <p>{article.articleDescription}</p>
+      </div>
 
-        <button
-          className={`favorite-btn ${isFavorite ? 'favorited' : ''}`}
-          onClick={toggleFavorite}
-        >
-          ★
-        </button>
+      <div className="favorite-icon" onClick={toggleFavorite}>
+        {isFavorite ? (
+          <span role="img" aria-label="favorite">⭐</span>
+        ) : (
+          <span role="img" aria-label="not favorite">☆</span>
+        )}
       </div>
     </div>
   );
