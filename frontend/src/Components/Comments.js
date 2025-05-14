@@ -10,10 +10,11 @@ const userId = 1;//temp user
     fetch(`http://localhost:8081/comments/fetch/all`)
       .then(res => res.json())
       .then(data => {
-        const filtered = data.filter(c => c.article && c.article.id === articleId);
+        const filtered = data
+          .filter(c => c.article && c.article.id === articleId)
+          .sort((a, b) => new Date(b.datePosted) - new Date(a.datePosted)); // newest first
         setComments(filtered);
-      })
-      .catch(err => console.error("Error fetching comments:", err));
+      });
   }, [articleId]);
 
   const handleAddComment = () => {
