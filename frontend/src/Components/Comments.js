@@ -51,17 +51,17 @@ const handleAddComment = () => {
 
       <div className="comments-list-container">
         <h3>Comments</h3>
-        <ul className="comments-list">
-          {comments.length > 0 ? (
-            comments.map((c, i) => (
-              <li key={i} className="comments-item">
-                {typeof c === 'string' ? c : c.text}
-              </li>
-            ))
-          ) : (
-            <p>No comments yet. Be the first to comment!</p>
-          )}
-        </ul>
+         <ul className="comments-list">
+           {comments.length > 0 ? (
+             comments.map((c, i) => (
+               <li key={i} className="comments-item">
+                 <strong>{c.user?.username || "Anonymous"}:</strong> {c.text}
+               </li>
+             ))
+           ) : (
+             <p>No comments yet. Be the first to comment!</p>
+           )}
+         </ul>
       </div>
     </div>
   );
