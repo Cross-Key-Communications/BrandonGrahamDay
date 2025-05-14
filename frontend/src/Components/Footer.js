@@ -1,19 +1,14 @@
 import React from 'react';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-left">
-        <img
-          src="/a.png"
-          alt="Logo"
-          style={{ height: '50px', marginRight: '15px' }}
-        />
-        <p style={{ margin: 0 }}>
-          © {new Date().getFullYear()} Cross Key Communication. All rights reserved.
-        </p>
-      </div>
+      <p>© 2025 CKC News</p>
+      <Link to="/qr">
+        <img src="/a.png" alt="QR Link" style={{ width: '80px' }} />
+      </Link>
     </footer>
   );
 };

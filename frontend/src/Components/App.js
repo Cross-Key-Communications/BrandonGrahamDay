@@ -5,8 +5,7 @@ import Footer from './Footer';
 import Home from './Home';
 import NewsArticle from './NewsArticle';
 import FavoritePage from './FavoritePage';
-
-import './App.css';
+import QrPage from './QrPage';
 
 function App() {
   return (
@@ -18,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/article/:id" element={<NewsArticle />} />
             <Route path="/favorite" element={<FavoritePage />} />
+            <Route path="/qr" element={<QrPage />} />
           </Routes>
         </div>
         <Footer />
