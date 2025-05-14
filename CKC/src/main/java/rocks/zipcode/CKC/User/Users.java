@@ -1,6 +1,7 @@
 package rocks.zipcode.CKC.User;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import rocks.zipcode.CKC.Comments.Comments;
@@ -28,13 +29,10 @@ public class Users {
 
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
     private List<Comments> comments;
 
 
     public Users() {
-
-
     }
 
 

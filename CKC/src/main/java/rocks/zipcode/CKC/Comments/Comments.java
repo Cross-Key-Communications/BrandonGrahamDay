@@ -1,6 +1,8 @@
 package rocks.zipcode.CKC.Comments;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import rocks.zipcode.CKC.Articles.Articles;
 import rocks.zipcode.CKC.User.Users;
@@ -30,9 +32,9 @@ public class Comments {
     @JoinColumn(name = "article_id")
     private Articles articles;
 
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")  // this name should match the column in your DB
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"comments"})
     private Users user;
 
 

@@ -7,11 +7,11 @@ import 'slick-carousel/slick/slick-theme.css';
 const TickerSlider = () => {
   const images = [
     { src: '/aapl.png', alt: 'AAPL Chart' },
-    { src: '/amzn.png', alt: 'AMZN Chart' },
+    { src: '/jnj.png', alt: 'AMZN Chart' },
     { src: '/goog.png', alt: 'GOOG Chart' },
-    { src: '/meta.png', alt: 'META Chart' },
-    { src: '/aapl.png', alt: 'AAPL Chart 2' },
-    { src: '/amzn.png', alt: 'AMZN Chart 2' }
+    { src: '/manu.png', alt: 'META Chart' },
+    { src: '/nike.png', alt: 'AAPL Chart 2' },
+    { src: '/dpnt.png', alt: 'AMZN Chart 2' }
   ];
 
   const settings = {

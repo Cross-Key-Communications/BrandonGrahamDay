@@ -13,6 +13,8 @@ import rocks.zipcode.CKC.User.Users;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/comments")
@@ -33,8 +35,9 @@ public class CommentsController {
 
     @PostMapping("/add/comment")
     public Comments addComment(@RequestBody CommentsDTO dto) {
-        Users user = userRepository.findById(dto.getUserId())
+        Users user = userRepository.findByUserName(dto.getUserName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
+
         Articles article = articlesRepository.findById(dto.getArticleId())
                 .orElseThrow(() -> new RuntimeException("Article not found"));
 
@@ -49,16 +52,28 @@ public class CommentsController {
 
     @GetMapping("/fetch/all")
     public List<Comments> getAllComments() {
-        return (List<Comments>) commentsRepository.findAll();
+        Iterable<Comments> iterable = commentsRepository.findAll();
+        return StreamSupport.stream(iterable.spliterator(), false)
+                .collect(Collectors.toList());
     }
-
     @GetMapping("/user/{userId}")
     public ResponseEntity<Iterable<Comments>> getCommentsByUser(@PathVariable Long userId) {
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return ResponseEntity.ok(user.getComments());
     }
+    @GetMapping("/user/{userId}/with-articles")
+    public ResponseEntity<List<Comments>> getCommentsByUserWithArticles(@PathVariable Long userId) {
+        Users user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
+        // Filter the user's comments that have an article associated
+        List<Comments> commentsWithArticles = user.getComments().stream()
+                .filter(comment -> comment.getArticle() != null)
+                .toList();
+
+        return ResponseEntity.ok(commentsWithArticles);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteComment(@PathVariable Long id) {
         if (commentsRepository.existsById(id)) {
@@ -79,5 +94,6 @@ public class CommentsController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
 }
 

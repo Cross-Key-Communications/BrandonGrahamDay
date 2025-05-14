@@ -15,7 +15,7 @@ const favoriteArticles = [
      source: { name: 'AP News' }
    },
   {
-     id: 1094, // 🔒 New unique ID
+     id: 1094,
         title: '2025 NFL schedule opens with Cowboys at Eagles on Thursday, September 4 - NBC Sports',
         articleDescription: 'Cowboys-Eagles has officially been announced as the league’s opener.',
         articleBody: 'The Cowboys will head to Philadelphia for the first game of the 2025 NFL season. Cowboys-Eagles has officially been announced as the league’s opener, with the game in Philadelphia for the traditional…',

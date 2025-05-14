@@ -4,6 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rocks.zipcode.CKC.Comments.Comments;
+import rocks.zipcode.CKC.Comments.CommentsRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 
 @RestController
@@ -12,15 +18,16 @@ public class UserController {
 
 
     private final UserRepository userRepository;
+    private final CommentsRepository commentsRepository;
 
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository,CommentsRepository commentsRepository) {
+        this.commentsRepository=commentsRepository;
         this.userRepository = userRepository;
     }
 
-
-//    @GetMapping
+    //    @GetMapping
 //    // this is what was returning the json to the webpage
 //    public Iterable<User> getAllUsers() {
 //        return userRepository.findAll();
@@ -40,6 +47,13 @@ public class UserController {
     public ResponseEntity<Users> createUser(@RequestBody Users users) {
         Users savedUsers = userRepository.save(users);
         return new ResponseEntity<>(savedUsers, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/fetch/all")
+    public List<Comments> getAllComments() {
+        Iterable<Comments> iterable = commentsRepository.findAll();
+        return StreamSupport.stream(iterable.spliterator(), false)
+                .collect(Collectors.toList());
     }
 
 
