@@ -7,6 +7,20 @@
   gap: 20px;
 }
 
+.ticker-box-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 240px;
+  flex-shrink: 0;
+}
+
+.ticker-box-group .ticker-slider {
+  height: 150px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
 .main-slider {
   flex: 2;
   max-width: 800px;

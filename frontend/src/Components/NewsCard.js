@@ -5,8 +5,8 @@ function NewsCard({ article, onClick, isInitiallyFavorite = false, lockFavorite 
   const [isFavorite, setIsFavorite] = useState(isInitiallyFavorite);
 
   const toggleFavorite = (e) => {
-    e.stopPropagation(); // prevent navigation
-    if (lockFavorite) return; // ✅ don't toggle if locked
+    e.stopPropagation();
+    if (lockFavorite) return;
     setIsFavorite(prev => !prev);
   };
 
@@ -14,7 +14,7 @@ function NewsCard({ article, onClick, isInitiallyFavorite = false, lockFavorite 
     <div className="news-card-link" onClick={onClick}>
       <div className="news-card">
         <img
-          src={article.thumbnail || "https://via.placeholder.com/300"}
+          src={article.thumbnail || 'a.png'}
           alt={article.title}
         />
         <div className="news-card-content">
