@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NewsCard.css';
 
 function NewsCard({ article, onClick, isInitiallyFavorite = false, lockFavorite = false }) {
   const [isFavorite, setIsFavorite] = useState(isInitiallyFavorite);
+  const isPlaceholder = !article.thumbnail;
 
   const toggleFavorite = (e) => {
     e.stopPropagation(); // prevent navigation
