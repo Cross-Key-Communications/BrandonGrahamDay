@@ -37,15 +37,20 @@ Cross Key Communications is a news web application inspired by platforms like CN
 # Key Features:
 
 <br>
+
 # Article Feed: 
 Browse a list of news articles with titles, summaries, authors, and publish dates.
+<br>
+
 # Categories: 
 Filter articles by topics such as World, Politics, Sports, etc.
+<br>
 # Authors: 
 Each article is linked to an author with a name and short bio.
+<br>
 # Comments: 
 Users can leave comments on individual articles.
-
+<br>
 # Optional API Integration: 
 Potential connection to a third-party news API to display real-time headlines.
 
