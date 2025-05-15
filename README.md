@@ -67,11 +67,11 @@ Author – Many to One w/ Article
 
 # Tech Stack:
 
-Backend: Java, Spring Boot, H2 Database
+Backend: Java, Spring Boot, MySQL Database
 
 Frontend: HTML, CSS, JavaScript
 
-Database: H2 (for local/in-memory storage)
+Database: MYSQL (for local/in-memory storage)
 
 Tools: Postman (API testing), GitHub (version control), IntelliJ
 
