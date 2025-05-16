@@ -1,9 +1,14 @@
 # CROSS KEY COMMUNICATIONS
 
 ![a](https://github.com/user-attachments/assets/27db53a8-9440-4b1f-924a-a0394644831f)
-[
-](https://files.slack.com/files-pri/T246Q4801-F08SAT7Q2J3/screenshot_2025-05-16_at_10.26.26___am.png)
+
 <br>
+
+![Screenshot 2025-05-16 at 11 51 19 AM](https://github.com/user-attachments/assets/42513667-7bb7-4ff4-9a9c-63e60ae2d5ad)
+
+
+<br>
+
 
 # Christian Thomas - 
 Linkedin - https://www.linkedin.com/in/christhomas1190/ <br>
