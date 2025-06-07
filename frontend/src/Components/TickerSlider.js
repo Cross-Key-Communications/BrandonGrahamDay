@@ -6,57 +6,62 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const TickerSlider = () => {
   const [chartImages, setChartImages] = useState([]);
-  const symbols = ['AAPL'];
+
+  const symbols = [
+    { symbol: 'AAPL', label: 'Apple' },
+    { symbol: 'NKE', label: 'Nike' },
+    { symbol: 'GOOG', label: 'Google' }
+  ];
 
   useEffect(() => {
-    const fetchCharts = async () => {
+    const fetchAllCharts = async () => {
       const images = [];
 
-      for (let symbol of symbols) {
+      for (let item of symbols) {
         try {
-          const res = await fetch(`http://localhost:8081/api/stocks/AAPL/chart`)
-
+          const res = await fetch(`http://localhost:8081/api/stocks/${item.symbol}/live`);
           const data = await res.json();
 
           const prices = data.prices;
           if (!prices || prices.length === 0) continue;
 
-          const dates = prices.map((_, i) => `Day ${i + 1}`);
+          const labels = prices.map((_, i) => `T-${i} min`);
 
           const chartUrl = `https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify({
             type: 'line',
             data: {
-              labels: dates,
+              labels: labels.reverse(),
               datasets: [{
-                label: symbol,
-                data: prices,
+                label: `${item.label} (Live)`,
+                data: prices.reverse(),
                 fill: false,
+                borderColor: 'blue'
               }]
             }
           }))}`;
 
-          images.push({ src: chartUrl, alt: `${symbol} Chart` });
+          images.push({ src: chartUrl, alt: `${item.label} Live Chart` });
         } catch (error) {
-          console.error(`Error fetching data for ${symbol}`, error);
+          console.error(`Error fetching data for ${item.symbol}`, error);
         }
       }
 
       setChartImages(images);
     };
 
-    fetchCharts();
+    fetchAllCharts();
   }, []);
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 3, // all 3 charts stacked vertically
     slidesToScroll: 1,
     arrows: false,
     vertical: true,
     autoplay: true,
-    autoplaySpeed: 4000
+    autoplaySpeed: 40000
   };
 
   return (
@@ -78,17 +83,3 @@ const TickerSlider = () => {
 };
 
 export default TickerSlider;
-
-
-/*
-// Static version (commented out)
-
-const images = [
-  { src: '/aapl.png', alt: 'AAPL Chart' },
-  { src: '/jnj.png', alt: 'AMZN Chart' },
-  { src: '/goog.png', alt: 'GOOG Chart' },
-  { src: '/manu.png', alt: 'META Chart' },
-  { src: '/nike.png', alt: 'AAPL Chart 2' },
-  { src: '/dpnt.png', alt: 'AMZN Chart 2' }
-];
-*/
