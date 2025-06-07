@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const TickerSlider = () => {
   const [chartImages, setChartImages] = useState([]);
-  const symbols = ['AAPL', 'JNJ', 'GOOG', 'MANU', 'NKE', 'DD'];
+  const symbols = ['AAPL'];
 
   useEffect(() => {
     const fetchCharts = async () => {
@@ -14,7 +14,8 @@ const TickerSlider = () => {
 
       for (let symbol of symbols) {
         try {
-          const res = await fetch(`http://localhost:8081/api/stocks/${symbol}/chart`);
+          const res = await fetch(`http://localhost:8081/api/stocks/AAPL/chart`)
+
           const data = await res.json();
 
           const prices = data.prices;
@@ -41,7 +42,6 @@ const TickerSlider = () => {
       }
 
       setChartImages(images);
-      console.log('Fetched chart images:', images);
     };
 
     fetchCharts();
@@ -78,6 +78,7 @@ const TickerSlider = () => {
 };
 
 export default TickerSlider;
+
 
 /*
 // Static version (commented out)
