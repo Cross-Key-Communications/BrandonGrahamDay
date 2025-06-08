@@ -8,10 +8,18 @@
   margin-bottom: 0;
 }
 
-.ticker-image {
+.ticker-chart {
   width: 100%;
-  height: 250px;
+  height: 100%;
   object-fit: contain;
   display: block;
-  margin-bottom: 0;
+}
+
+.ticker-symbol-label {
+  text-align: right;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  margin-bottom: 4px;
+  padding-right: 30px; /* optional spacing */
 }

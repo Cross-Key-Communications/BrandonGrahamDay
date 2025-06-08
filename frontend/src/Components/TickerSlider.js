@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const TickerSlider = () => {
   const [chartImages, setChartImages] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const symbols = [
     { symbol: 'AAPL', label: 'Apple' },
@@ -32,15 +33,25 @@ const TickerSlider = () => {
             data: {
               labels: labels.reverse(),
               datasets: [{
-                label: `${item.label} (Live)`,
+                label: `${item.symbol}`,
                 data: prices.reverse(),
                 fill: false,
-                borderColor: 'blue'
+                borderColor: 'blue',
+                borderWidth: 2
               }]
+            },
+            options: {
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                x: { ticks: { font: { size: 14 } } },
+                y: { ticks: { font: { size: 14 } } }
+              }
             }
           }))}`;
 
-          images.push({ src: chartUrl, alt: `${item.label} Live Chart` });
+          images.push({ src: chartUrl, alt: `${item.label} (${item.symbol})` });
         } catch (error) {
           console.error(`Error fetching data for ${item.symbol}`, error);
         }
@@ -56,28 +67,32 @@ const TickerSlider = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // all 3 charts stacked vertically
+    slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    vertical: true,
     autoplay: true,
-    autoplaySpeed: 40000
+    autoplaySpeed: 40000,
+    beforeChange: (oldIndex, newIndex) => setCurrentIndex(newIndex),
   };
 
   return (
-    <div className="ticker-slider" style={{ maxWidth: '220px', margin: '0 auto' }}>
-      <Slider {...settings}>
-        {chartImages.map((img, index) => (
-          <div key={index} className="ticker-slide">
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="ticker-image"
-              style={{ height: '150px', objectFit: 'contain' }}
-            />
-          </div>
-        ))}
-      </Slider>
+    <div className="ticker-slider-container">
+      <div className="ticker-symbol-label">
+        {symbols[currentIndex]?.symbol}
+      </div>
+      <div className="ticker-slider">
+        <Slider {...settings}>
+          {chartImages.map((img, index) => (
+            <div key={index} className="ticker-slide">
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="ticker-chart"
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };

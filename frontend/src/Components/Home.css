@@ -30,6 +30,7 @@
   align-items: flex-start;
   gap: 20px; /* space between ticker and slider */
   padding: 20px;
+  align-items: stretch;
 }
 
 .ticker-box {
